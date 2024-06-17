@@ -460,7 +460,7 @@ static TOKIO1: Lazy<GlobalRuntime> = Lazy::new(|| {
             .name("async-compat/tokio-1".into())
             .spawn(move || TOKIO1.fallback_rt.as_ref().unwrap().block_on(Pending))
             .unwrap();
-        let rt = tokio::runtime::Builder::new_current_thread()
+        let rt = tokio::runtime::Builder::new_multi_thread()
             .enable_all()
             .build()
             .expect("cannot start tokio-1 runtime");
